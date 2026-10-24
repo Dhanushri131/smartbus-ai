@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SmartBus AI - Intelligent Bus Arrival Time Prediction</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Hanken+Grotesk:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/static/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head><body>
+<header class="nav"><a class="logo" href="#home"><span class="dot">&#128652;</span>SmartBus AI</a>
+<button id="burger" aria-label="Menu">&#9776;</button>
+<nav id="menu"><a href="#home">Home</a><a href="#tracking">Live Tracking</a><a href="#eta">ETA Prediction</a><a href="#routes">Routes</a><a href="#about">About</a><a href="#contact">Contact</a></nav></header>
+
+<section id="home" class="hero"><div class="wrap hero-grid"><div>
+<h1>Your Bus. Your Time. Your Journey.</h1>
+<p class="sub">SmartBus AI predicts bus arrival times and delays using real-time location and historical travel data, so you leave when it matters.</p>
+<div class="btns"><a class="btn primary" href="#tracking">&#128205; Track Your Bus</a><a class="btn ghost" href="#eta">&#9201; Predict Arrival Time</a></div></div>
+<div class="hero-card"><div class="road"><span class="bus-run">&#128652;</span></div>
+<div class="hero-stat"><b id="h-next">--</b><small>minutes to the next bus on Route R1 (demo)</small></div></div></div></section>
+
+<section id="tracking" class="wrap sec"><h2>Live Bus Tracking</h2>
+<p class="note">&#9888; Demo data: bus positions are simulated, not a real GPS feed. Plug a GPS feed into <code>bus_state()</code> in app.py to go live.</p>
+<form class="panel row" id="trackForm">
+<label>Bus number<select id="bus"></select></label><label>Source<select id="src"></select></label>
+<label>Destination<select id="dst"></select></label><label>Preferred bus stop<select id="stop"></select></label>
+<button class="btn primary" type="submit">Track</button></form>
+<div id="trackErr" class="error" hidden></div>
+<div class="cards" id="cards"></div>
+<div class="grid2"><div class="panel"><h3>Route map <span class="tag">Demo data</span></h3><svg id="map" viewBox="0 0 100 100" role="img" aria-label="Route map"></svg></div>
+<div class="panel"><h3>Upcoming stops</h3><div class="count" id="count">--:--</div><small>countdown to selected stop</small><ul id="stops" class="stops"></ul></div></div></section>
+
+<section id="eta" class="alt"><div class="wrap sec"><h2>ETA Prediction</h2>
+<div class="panel pipe"><h3>How it works</h3><div class="flow">
+<span>GPS &amp; Traffic Data</span><i>&#8594;</i><span>Data Preprocessing</span><i>&#8594;</i><span>ML Baseline<br><small>Random Forest / XGBoost</small></span><i>&#8594;</i><span>GRU Time-Series<br><small>needs training</small></span><i>&#8594;</i><span>ETA Calculation</span><i>&#8594;</i><span>Web Dashboard</span></div>
+<p class="note" id="modelNote">Checking model status...</p></div>
+<div class="grid2"><form class="panel" id="predForm"><h3>Enter travel conditions</h3>
+<div class="fields"><label>Current speed (km/h)<input type="number" id="p-speed" value="28" step="0.1"></label>
+<label>Remaining distance (km)<input type="number" id="p-dist" value="5" step="0.1"></label>
+<label>Traffic<select id="p-traffic"><option value="0">Light</option><option value="1">Moderate</option><option value="2">Heavy</option></select></label>
+<label>Hour of day (0-23)<input type="number" id="p-hour" value="9"></label>
+<label>Day of week<select id="p-dow"><option value="0">Monday</option><option value="1">Tuesday</option><option value="2">Wednesday</option><option value="3">Thursday</option><option value="4">Friday</option><option value="5">Saturday</option><option value="6">Sunday</option></select></label>
+<label>Historical avg speed (km/h)<input type="number" id="p-hist" value="24" step="0.1"></label></div>
+<button class="btn primary" type="submit">Predict Arrival</button><div id="predErr" class="error" hidden></div>
+<div id="predOut" class="result" hidden></div></form>
+<div class="panel"><h3>Traffic impact on ETA</h3><canvas id="trafficChart"></canvas></div></div>
+<div class="panel"><h3>Scheduled vs actual vs predicted (by hour of day)</h3><canvas id="histChart" height="110"></canvas></div></div></section>
+
+<section id="routes" class="wrap sec"><h2>Routes &amp; Analytics</h2>
+<div class="cards" id="kpis"></div>
+<div class="grid2"><div class="panel"><h3>Route performance: on-time %</h3><canvas id="routeChart"></canvas></div>
+<div class="panel"><h3>Delay notifications</h3><ul id="alerts" class="alerts"></ul></div></div>
+<div class="cards" id="routeCards"></div>
+<div class="grid2"><div class="panel future"><h3>Passenger demand prediction</h3><p>Coming next: forecast boarding counts per stop and hour from ticketing data.</p><span class="tag">Planned</span></div>
+<div class="panel future"><h3>Route optimization</h3><p>Coming next: suggest stop spacing and frequency changes that cut average waiting time.</p><span class="tag">Planned</span></div></div></section>
+
+<section id="about" class="alt"><div class="wrap sec"><h2>About SmartBus AI</h2>
+<p class="lead">A college project that predicts when a bus will reach your stop. It compares a Machine Learning baseline with a GRU (Gated Recurrent Unit) recurrent network that learns from sequences of speed, traffic and past trips.</p>
+<div class="cards"><div class="card"><h4>Frontend</h4><p>HTML, CSS, JavaScript, Chart.js, SVG map</p></div><div class="card"><h4>Backend</h4><p>Python Flask REST API</p></div><div class="card"><h4>Database</h4><p>SQLite: buses, routes, trips, contacts</p></div><div class="card"><h4>Models</h4><p>Random Forest baseline, GRU (ml/train.py)</p></div></div></div></section>
+
+<section id="contact" class="wrap sec"><h2>Contact</h2>
+<form class="panel" id="contactForm"><div class="fields"><label>Name<input id="c-name"></label><label>Email<input id="c-email" type="email"></label></div>
+<label>Message<textarea id="c-msg" rows="4"></textarea></label><button class="btn primary" type="submit">Send message</button>
+<div id="cErr" class="error" hidden></div><div id="cOk" class="ok" hidden>Message sent. Thank you!</div></form></section>
+<footer>SmartBus AI &middot; College project &middot; All tracking data shown is simulated demo data.</footer>
+<script src="/static/js/app.js"></script></body></html>

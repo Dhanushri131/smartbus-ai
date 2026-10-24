@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block content %}<section id="eta" class="alt"><div class="wrap sec"><h2>ETA Prediction</h2>
+<div class="panel pipe"><h3>How it works</h3><div class="flow">
+<span>GPS &amp; Traffic Data</span><i>&#8594;</i><span>Data Preprocessing</span><i>&#8594;</i><span>ML Baseline<br><small>Random Forest / XGBoost</small></span><i>&#8594;</i><span>GRU Time-Series<br><small>needs training</small></span><i>&#8594;</i><span>ETA Calculation</span><i>&#8594;</i><span>Web Dashboard</span></div>
+<p class="note" id="modelNote">Checking model status...</p></div>
+<div class="grid2"><form class="panel" id="predForm"><h3>Enter travel conditions</h3>
+<div class="fields"><label>Current speed (km/h)<input type="number" id="p-speed" value="28" step="0.1"></label>
+<label>Remaining distance (km)<input type="number" id="p-dist" value="5" step="0.1"></label>
+<label>Traffic<select id="p-traffic"><option value="0">Light</option><option value="1">Moderate</option><option value="2">Heavy</option></select></label>
+<label>Hour of day (0-23)<input type="number" id="p-hour" value="9"></label>
+<label>Day of week<select id="p-dow"><option value="0">Monday</option><option value="1">Tuesday</option><option value="2">Wednesday</option><option value="3">Thursday</option><option value="4">Friday</option><option value="5">Saturday</option><option value="6">Sunday</option></select></label>
+<label>Historical avg speed (km/h)<input type="number" id="p-hist" value="24" step="0.1"></label></div>
+<button class="btn primary" type="submit">Predict Arrival</button><div id="predErr" class="error" hidden></div>
+<div id="predOut" class="result" hidden></div></form>
+<div class="panel"><h3>Traffic impact on ETA</h3><canvas id="trafficChart"></canvas></div></div>
+<div class="panel"><h3>Scheduled vs actual vs predicted (by hour of day)</h3><canvas id="histChart" height="110"></canvas></div></div></section>{% endblock %}

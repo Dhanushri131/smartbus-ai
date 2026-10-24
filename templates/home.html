@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block content %}<section id="home" class="hero"><div class="wrap hero-grid"><div>
+<h1>Your Bus. Your Time. Your Journey.</h1>
+<p class="sub">SmartBus AI predicts bus arrival times and delays using real-time location and historical travel data, so you leave when it matters.</p>
+<div class="btns"><a class="btn primary" href="/tracking">&#128205; Track Your Bus</a><a class="btn ghost" href="/eta">&#9201; Predict Arrival Time</a></div></div>
+<div class="hero-card"><div class="road"><span class="bus-run">&#128652;</span></div>
+<div class="hero-stat"><b id="h-next">--</b><small>minutes to the next bus on Route R1 (demo)</small></div></div></div></section><section class="wrap sec"><h2>Everything in one place</h2><div class="cards big">
+<a class="card fc" href="/tracking"><h4>&#128205; Live Tracking</h4><small>Follow a bus on the map with ETA and countdown.</small></a>
+<a class="card fc g" href="/planner"><h4>&#128739; Trip Planner</h4><small>Find buses between two stops, with fare estimate.</small></a>
+<a class="card fc" href="/eta"><h4>&#129504; ETA Prediction</h4><small>Try the ML/GRU pipeline with your own conditions.</small></a>
+<a class="card fc g" href="/routes"><h4>&#128652; Routes</h4><small>Browse every route and its stops.</small></a>
+<a class="card fc" href="/analytics"><h4>&#128200; Analytics</h4><small>On-time rates, delays and alerts.</small></a>
+<a class="card fc g" href="/about"><h4>&#8505; About</h4><small>Architecture, tech stack and roadmap.</small></a></div></section>{% endblock %}

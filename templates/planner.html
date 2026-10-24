@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block content %}<section class="wrap sec"><h2>Trip Planner</h2><p class="note">&#9888; Demo data: buses and fares are simulated. Fare = 5 + 1.5 per km (editable in app.py).</p>
+<form class="panel row" id="planForm"><label>From<select id="pl-src"></select></label><label>To<select id="pl-dst"></select></label><button class="btn primary" type="submit">Find buses</button></form>
+<div id="plErr" class="error" hidden></div><div class="cards" id="plOut"></div></section>{% endblock %}

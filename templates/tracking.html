@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}<section id="tracking" class="wrap sec"><h2>Live Bus Tracking</h2>
+<p class="note">&#9888; Demo data: bus positions are simulated, not a real GPS feed. Plug a GPS feed into <code>bus_state()</code> in app.py to go live.</p>
+<form class="panel row" id="trackForm">
+<label>Bus number<select id="bus"></select></label><label>Source<select id="src"></select></label>
+<label>Destination<select id="dst"></select></label><label>Preferred bus stop<select id="stop"></select></label>
+<button class="btn primary" type="submit">Track</button></form>
+<div id="trackErr" class="error" hidden></div>
+<div class="cards" id="cards"></div>
+<div class="grid2"><div class="panel"><h3>Route map <span class="tag">Demo data</span></h3><svg id="map" viewBox="0 0 100 100" role="img" aria-label="Route map"></svg></div>
+<div class="panel"><h3>Upcoming stops</h3><div class="count" id="count">--:--</div><small>countdown to selected stop</small><ul id="stops" class="stops"></ul></div></div></section>{% endblock %}

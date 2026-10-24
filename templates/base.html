@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SmartBus AI - Intelligent Bus Arrival Time Prediction</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Hanken+Grotesk:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/static/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head><body>
+<header class="nav"><a class="logo" href="/"><span class="dot">&#128652;</span>SmartBus AI</a>
+<button id="burger" aria-label="Menu">&#9776;</button>
+<nav id="menu">{% for ep,url,label in [("home","/","Home"),("tracking","/tracking","Live Tracking"),("planner","/planner","Trip Planner"),("eta","/eta","ETA Prediction"),("routes","/routes","Routes"),("analytics","/analytics","Analytics"),("about","/about","About"),("contact","/contact","Contact")] %}<a href="{{url}}" {% if request.endpoint==ep %}class="active" aria-current="page"{% endif %}>{{label}}</a>{% endfor %}</nav></header>
+<main>{% block content %}{% endblock %}</main>
+<footer>SmartBus AI &middot; College project &middot; All tracking data shown is simulated demo data.</footer>
+<script src="/static/js/app.js"></script></body></html>

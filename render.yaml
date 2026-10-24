@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: smartbus-ai
+    runtime: python
+    buildCommand: pip install -r requirements.txt && python ml/train.py
+    startCommand: gunicorn app:app
+    plan: free

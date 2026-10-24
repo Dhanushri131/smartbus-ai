@@ -1,0 +1,6 @@
+flask>=3.0
+gunicorn
+numpy
+scikit-learn
+joblib
+# optional GRU training: tensorflow
